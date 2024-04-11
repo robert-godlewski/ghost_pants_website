@@ -9,17 +9,39 @@ This is mainly a blog website that talks a lot about games and tv shows.  The na
 - [ ] Can do a general search - [Tutorial reference](https://www.youtube.com/watch?v=AGtae4L5BbI) (no need for a Search Engine DBMS)
 - [ ] Basic Styling and UI
 - [ ] Get admin to work as an official user
+- [ ] Setup Docker container for Nginx and Gunicorn (Maybe?) for webhosting and deployment
+- [ ] Setup and choose a Cloud Service Provider
 
 # Technology Used
 This is a list of technologies used to build up the website.
+
+[<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python logo" height="50">](https://www.python.org/) [<img src="https://static.djangoproject.com/img/logos/django-logo-negative.png" alt="Django logo" height="50">](https://www.djangoproject.com/)
+
+Will need to add in:
+
+[<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/HTML5_Badge.svg" alt="HTML5 logo" height="50">](https://html.spec.whatwg.org/) [<img src="https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" alt="CSS3 logo" height="50">](https://www.w3.org/TR/CSS/) [<img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript logo" height="50">](https://ecma-international.org/publications-and-standards/standards/ecma-262/) [<img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap Logo" height="50">](https://getbootstrap.com/) [<img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/JQuery-Logo.svg" alt="jQuery Logo" height="50">](https://jquery.com/) [<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL Logo" height="50">](https://www.postgresql.org/) [<img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="Nginx Logo" height="50">](https://www.nginx.com/) [<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Gunicorn_logo_2010.svg" alt="Gunicorn Logo" height="50">](https://gunicorn.org/) [<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Docker_%28container_engine%29_logo.svg" alt="Docker Logo" height="50">](https://www.docker.com/)
+
+* GCP/ DigitalOcean/ Heroku - Need to choose
 
 ## Programming Languages
 1. JavaScript, HTML, CSS, Bootstrap, jQuery(?)
 2. Python and Django
 
-Will need JavaScript, HTML, and CSS because that's just basic Web Development needs.  Generally will use Bootstrap for some specific styling stuff.  Might use jQuery for specific UI stuff if Bootstrap is not able to handle it - [Django-jQuery setup](https://stackoverflow.com/questions/12031825/how-to-set-up-django-website-with-jquery).  We are skipping TypeScript and React.
+Will need *JavaScript, HTML, and CSS* because that's just basic Web Development needs.  Generally will use *Bootstrap* for some specific styling stuff.  Might use *jQuery* for specific UI stuff if Bootstrap is not able to handle it - [Django-jQuery setup](https://stackoverflow.com/questions/12031825/how-to-set-up-django-website-with-jquery).  We are skipping TypeScript and React.
 
-We will use Python and Django for this project because Django is great for blogs.
+We will use *Python* and *Django* for this project because Django is great for blogs.
 
 ## Database
-We will stick with a Relational Database Management System.  Specifically we will be using PostgreSQL due to being free and open source as well as the ability to handle complex data.  We will start out with SQLite though to start out with though.
+We will stick with a Relational Database Management System.  Specifically we will be using *PostgreSQL* due to being free and open source as well as the ability to handle complex data.  We will start out with *SQLite* though to start out with though.
+
+## Webhosting
+Using *Nginx* and *Gunicorn* for this because they are compatible with Django Development.
+
+## Cloud Service Provider
+Need to choose between:
+* GCP
+* DigitalOcean
+* Heroku
+
+# References
+* https://www.toptal.com/developers/gitignore/api/django
