@@ -1,3 +1,7 @@
+# My special ignores
+# Hiding the migrations due to the data being actively fixed in the development stage
+backend/*/migrations/0*.py
+
 # Created by https://www.toptal.com/developers/gitignore/api/django,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,react
 
@@ -104,7 +108,7 @@ ipython_config.py
 #   However, in case of collaboration, if having platform-specific dependencies or dependencies
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
-Pipfile.lock
+# Pipfile.lock
 
 # poetry
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.

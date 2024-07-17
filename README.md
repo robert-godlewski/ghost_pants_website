@@ -48,3 +48,4 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 
 # References
 * https://www.toptal.com/developers/gitignore/api/django,react
+* Tim's Tutorial - https://www.youtube.com/watch?v=c-QsfbznSXI
