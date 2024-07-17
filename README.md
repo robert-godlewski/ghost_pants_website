@@ -2,12 +2,13 @@
 This is mainly a blog website that talks a lot about games and tv shows.  The name is called Ghost Pants because that's what Blizzard's account called it as.
 
 ## Needs for the project
-- [ ] Blog Posts can read markdown files for description details
+- [ ] Implement features from [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI) to serialize Django and React as the UI
+- [ ] Blog Posts can read markdown files for description details or have a text editor in them
 - [ ] Others can comment of Blog Posts (we don't need complex relations here so a RDBMS will do)
 - [ ] Rankings per game (Utilizing a separate fields?)
 - [ ] Can search and organize by genre and category (Utilizing a separate class)
 - [ ] Can do a general search - [Tutorial reference](https://www.youtube.com/watch?v=AGtae4L5BbI) (no need for a Search Engine DBMS)
-- [ ] Basic Styling and UI
+- [ ] Basic Styling and UI - React (Serialize with React)
 - [ ] Get admin to work as an official user
 - [ ] Setup Docker container for Nginx and Gunicorn (Maybe?) for webhosting and deployment
 - [ ] Setup and choose a Cloud Service Provider
@@ -24,10 +25,10 @@ Will need to add in:
 * GCP/ DigitalOcean/ Heroku - Need to choose
 
 ## Programming Languages
-1. JavaScript, HTML, CSS, Bootstrap, jQuery(?)
+1. JavaScript, HTML, CSS, Bootstrap, React
 2. Python and Django
 
-Will need *JavaScript, HTML, and CSS* because that's just basic Web Development needs.  Generally will use *Bootstrap* for some specific styling stuff.  Might use *jQuery* for specific UI stuff if Bootstrap is not able to handle it - [Django-jQuery setup](https://stackoverflow.com/questions/12031825/how-to-set-up-django-website-with-jquery).  We are skipping TypeScript and React.
+Will need *JavaScript, HTML, and CSS* because that's just basic Web Development needs.  Generally will use *Bootstrap* for some specific styling stuff.  *React* for single page rendering mechanics built in for better UI experience.  Skipping *jQuery* because React is enough for specific UI stuff if Bootstrap is not able to handle it - [Django-jQuery setup](https://stackoverflow.com/questions/12031825/how-to-set-up-django-website-with-jquery).  We are skipping *TypeScript* because it's not necessary for this.
 
 We will use *Python* and *Django* for this project because Django is great for blogs.
 
@@ -39,9 +40,11 @@ Using *Nginx* and *Gunicorn* for this because they are compatible with Django De
 
 ## Cloud Service Provider
 Need to choose between:
-* GCP
-* DigitalOcean
-* Heroku
+* GCP - Expensive
+* DigitalOcean - Mid Range
+* Heroku - Most cheap
+
+Most likely going to choose Heroku due to being cheap and this is mainly for myself.
 
 # References
-* https://www.toptal.com/developers/gitignore/api/django
+* https://www.toptal.com/developers/gitignore/api/django,react
