@@ -48,4 +48,6 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 
 # References
 * https://www.toptal.com/developers/gitignore/api/django,react
+* https://www.django-rest-framework.org/
+* https://docs.djangoproject.com/en/5.0/topics/serialization/
 * Tim's Tutorial - https://www.youtube.com/watch?v=c-QsfbznSXI
