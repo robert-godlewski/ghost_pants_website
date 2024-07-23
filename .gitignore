@@ -2,6 +2,12 @@
 # Hiding the migrations due to the data being actively fixed in the development stage
 backend/*/migrations/0*.py
 
+# Other react stuff that we just don't need
+frontend/package-lock.json
+frontend/public/
+frontend/.gitignore
+frontend/README.md
+
 # Created by https://www.toptal.com/developers/gitignore/api/django,react
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,react
 
@@ -191,3 +197,29 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/django,react
+
+# Created from creating frontend for react build
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
