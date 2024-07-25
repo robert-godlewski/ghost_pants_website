@@ -52,9 +52,4 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 * https://docs.djangoproject.com/en/5.0/topics/serialization/
 * [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 * [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-* Tim's Tutorial - https://www.youtube.com/watch?v=c-QsfbznSXI
-
-# Other notes
-using vite for react build:
-(env) ... % npm create vite@latest frontend -- --template react
-(env) ... % npm install axios react-router-dom jwt-decode
+* [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI)
