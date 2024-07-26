@@ -1,17 +1,20 @@
-import {useState} from 'react'
-import {useNavigation} from 'react-router-dom'
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 // Created files
-import api from '../api'
-import {ACCESS_TOKEN, REFRESH_TOKEN} from '../constants'
-import '../styles/Form.css'
+import api from '../api';
+import {ACCESS_TOKEN, REFRESH_TOKEN} from '../constants';
+import '../styles/Form.css';
+import LoadingIndicator from './LoadingIndicator';
 
 
+/* eslint-disable react/prop-types */
 function Form({route, method}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigation()
+    const navigate = useNavigate()
 
     const name = method === 'login' ? 'Login' : 'Register'
 
@@ -50,6 +53,7 @@ function Form({route, method}) {
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Password'
         />
+        {loading && <LoadingIndicator/>}
         <button className='form-button' type='submit'>{name}</button>
     </form>
 }

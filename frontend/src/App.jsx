@@ -1,4 +1,4 @@
-import react from 'react'
+// import react from 'react'
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 
 // Components
