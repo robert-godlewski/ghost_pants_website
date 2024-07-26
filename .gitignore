@@ -5,6 +5,7 @@ backend/*/migrations/0*.py
 # Other react stuff that we just don't need
 frontend/package-lock.json
 frontend/public/
+frontend/assets/
 frontend/.gitignore
 frontend/README.md
 
