@@ -2,7 +2,7 @@
 This is mainly a blog website that talks a lot about games and tv shows.  The name is called Ghost Pants because that's what Blizzard's account called it as.
 
 ## Needs for the project
-- [ ] Implement features from [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI) to serialize Django and React as the UI
+- [x] Implement features from [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI) to serialize Django and React as the UI
 - [ ] Blog Posts can read markdown files for description details or have a text editor in them
 - [ ] Others can comment of Blog Posts (we don't need complex relations here so a RDBMS will do)
 - [ ] Rankings per game (Utilizing a separate fields?)
