@@ -38,11 +38,18 @@ class NoteDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
 
 
-# Also need to add in another view for viewing all posts within a category
 class AllPostsView(generics.ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
+
+
+class SinglePostView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self, id):
+        return Post.objects.filter(id=id)
 
 
 class PostCreateView(generics.ListCreateAPIView):
@@ -61,6 +68,30 @@ class PostCreateView(generics.ListCreateAPIView):
             print(serializer.errors)
 
 
-# Add in full UD functions for Posts here
+class PostUpdateView(generics.UpdateAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated] # Might need to get specific with only admin users here
+
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(author=user)
+
+    def perform_update(self, serializer): # Probably need to fix this
+        if serializer.is_valid():
+            serializer.update(author=self.request.user)
+        else:
+            print(serializer.errors)
+
+
+
+class PostDelete(generics.DestroyAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated] # Might need to get specific with only admin users here
+
+    def get_queryset(self):
+        user = self.request.user
+        return Note.objects.filter(author=user)
+
+
 # Add in full CRUD functions for Categories here
 # Add in full CRUD functions for Comments here
