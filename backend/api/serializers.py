@@ -6,10 +6,12 @@ from .models import Note, Category, Post, Comment
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "password"]
+        fields = ["id", "username", "password"] # Might need "is_staff" here as well
         extra_kwargs = {"password": {"write_only": True}}
 
+    # Might need another function to update user.is_staff from False to True with django.emails and django-oauth with the main email.
     def create(self, validated_data):
+        # Might need to add in the default that user.is_staff = False
         user = User.objects.create_user(**validated_data)
         return user
 

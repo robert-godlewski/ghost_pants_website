@@ -54,7 +54,7 @@ class SinglePostView(generics.ListAPIView):
 
 class PostCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated] # Might need to get specific with only admin users here
+    permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     # Might need to add in search for categories as well
     def get_queryset(self):
@@ -70,7 +70,7 @@ class PostCreateView(generics.ListCreateAPIView):
 
 class PostUpdateView(generics.UpdateAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated] # Might need to get specific with only admin users here
+    permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     def get_queryset(self):
         user = self.request.user
@@ -86,7 +86,7 @@ class PostUpdateView(generics.UpdateAPIView):
 
 class PostDelete(generics.DestroyAPIView):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated] # Might need to get specific with only admin users here
+    permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     def get_queryset(self):
         user = self.request.user
