@@ -40,6 +40,7 @@ function Home() {
     };
 
     return <div>
+        <a href='/logout'>Logout</a>
         <div>
             <h2>Notes</h2>
             {

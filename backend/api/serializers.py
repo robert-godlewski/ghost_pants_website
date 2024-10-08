@@ -6,7 +6,13 @@ from .models import Note, Category, Post, Comment
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "password"] # Might need "is_staff" here as well
+        fields = [
+            "id", 
+            "username", 
+            "password",
+            # Will need to do some authentification stuff here instead of keeping this
+            "is_staff"
+        ]
         extra_kwargs = {"password": {"write_only": True}}
 
     # Might need another function to update user.is_staff from False to True with django.emails and django-oauth with the main email.
@@ -48,7 +54,7 @@ class PostSerializer(serializers.ModelSerializer):
             "author",
             "category"
         ]
-        extra_kwargs = {"author": {"read_only": True}}
+        extra_kwargs = {"author": {"read_only": True}, "category": {"read_only": True}}
 
     # Posts have full CRUD only with admin users and Read by everyone
 
