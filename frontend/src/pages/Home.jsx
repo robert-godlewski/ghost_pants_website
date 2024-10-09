@@ -1,11 +1,15 @@
 import {useState, useEffect} from 'react';
 import api from '../api';
+
+// Components
 import Note from '../components/Note';
+import AllPosts from '../components/AllPosts';
 
 // Style sheets
 import '../styles/Home.css'
 
 function Home() {
+    // constants below are for the Notes category
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
@@ -41,6 +45,8 @@ function Home() {
 
     return <div>
         <a href='/logout'>Logout</a>
+        <AllPosts/>
+        {/* Need to remove notes here */}
         <div>
             <h2>Notes</h2>
             {
