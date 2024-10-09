@@ -4,6 +4,7 @@ import { ACCESS_TOKEN } from "./constants";
 
 const apiUrl = "/choreo-apis/ghostpants/backend/v1";
 
+// Within ./frontend/.env file add in -> VITE_API_URL="http://127.0.0.1:8000"
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL : apiUrl,
 });
