@@ -10,7 +10,7 @@ function AllPosts() {
 
     useEffect(() => {
         getPosts();
-    }, [])
+    }, []);
 
     const getPosts = () => {
         api

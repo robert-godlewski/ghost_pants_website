@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 # This is from the tutorial - will remove
@@ -30,7 +31,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255, blank=True)
-    slug = models.SlugField(null=False)
+    slug = models.SlugField(null=False, unique=True)
     content = models.TextField() # Might need to add in something here to make more of a word ducument like setting available
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -45,6 +46,13 @@ class Post(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug and not self.subtitle:
+            self.slug = slugify(self.title+'-'+self.subtitle)
+        elif not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Comment(models.Model):

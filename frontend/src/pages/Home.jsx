@@ -4,6 +4,7 @@ import api from '../api';
 // Components
 import Note from '../components/Note';
 import AllPosts from '../components/AllPosts';
+import CreatePostForm from '../components/CreatePost';
 
 // Style sheets
 import '../styles/Home.css'
@@ -46,6 +47,7 @@ function Home() {
     return <div>
         <a href='/logout'>Logout</a>
         <AllPosts/>
+        <CreatePostForm/>
         {/* Need to remove notes here */}
         <div>
             <h2>Notes</h2>
