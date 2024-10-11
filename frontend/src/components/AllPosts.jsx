@@ -17,7 +17,10 @@ function AllPosts() {
             .get('/api/post/')
             .then((res) => res.data)
             .then((data) => setPosts(data))
-            .catch((err) => alert(err));
+            .catch((err) => {
+                // alert(err)
+                console.log(err)
+            });
     };
 
     return <div>

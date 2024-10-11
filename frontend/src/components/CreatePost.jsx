@@ -6,7 +6,7 @@ import api from "../api";
 function CreatePostForm() {
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
-    //const [slug, setSlug] = useState('');
+    // const [slug, setSlug] = useState('');
     const [content, setContent] = useState(''); // Need to fix this to make a text box instead
     //const [created_at, setCreatedAt] = useState(''); // Might need to use some special formating for dates here
 
@@ -19,15 +19,17 @@ function CreatePostForm() {
     //             setSlug(title);
     //         }
     //     }
+    //     console.log(`Slug = ${slug}`);
     // };
 
     const createPost = (e) => {
         e.preventDefault();
-        //createSlug();
+        // createSlug();
         api
             .post('/api/post/create/', {
                 title, 
                 subtitle, 
+                // slug, 
                 content
             })
             .then((res) => {
@@ -37,11 +39,11 @@ function CreatePostForm() {
                 } else {
                     msg = 'Failed to create post!'
                 }
-                alert(msg);
+                // alert(msg);
                 console.log(msg);
             })
             .catch((err) => {
-                alert(err);
+                // alert(err);
                 console.log(err);
             });
     };
