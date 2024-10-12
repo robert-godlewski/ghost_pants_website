@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .serializers import UserSerializer, NoteSerializer, PostSerializer
-from .models import Note, Post
+from .serializers import UserSerializer, NoteSerializer, CategorySerializer, PostSerializer
+from .models import Note, Category, Post
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -36,6 +36,28 @@ class NoteDelete(generics.DestroyAPIView):
     def get_queryset(self):
         user = self.request.user
         return Note.objects.filter(author=user)
+
+
+class AllCategories(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
+
+
+class OneCategory(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self, slug):
+        return Category.objects.filter(slug=slug)
+
+
+class CreateCategory(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated] # Probably need to also check if user.is_staff == True whomewhere her or in the api.serializer class for this to work
+
+# Add in full CRUD functions for Categories here
 
 
 class AllPostsView(generics.ListAPIView):
@@ -93,5 +115,4 @@ class PostDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
 
 
-# Add in full CRUD functions for Categories here
 # Add in full CRUD functions for Comments here
