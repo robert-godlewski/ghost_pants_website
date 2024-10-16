@@ -9,10 +9,11 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import Landing from './pages/Landing'
 
 function Logout() {
   localStorage.clear()
-  return <Navigate to='/login/'/>
+  return <Navigate to='/landing/'/>
 }
 
 function RegisterAndLogout() {
@@ -25,6 +26,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path='/landing' element={<Landing/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<RegisterAndLogout/>}/>
         <Route path='/logout' element={<Logout/>}/>
