@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import api from '../api';
 import Note from '../components/Note';
+import CatPosts from '../components/CatPosts';
 
 // Style sheets
 import '../styles/Home.css'
@@ -41,6 +42,8 @@ function Home() {
 
     return <div>
         <a href='/logout'>Logout</a>
+        <CatPosts/>
+        {/* Remove below */}
         <div>
             <h2>Notes</h2>
             {
