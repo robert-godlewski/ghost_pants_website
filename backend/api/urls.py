@@ -9,6 +9,7 @@ urlpatterns = [
     path('category/', views.AllCategories.as_view(), name='all-categories'),
     path('category/create/', views.CreateCategory.as_view(), name='create-category'),
     path('category/<str:slug>/', views.OneCategory.as_view(), name='one-category'),
+    path('category/delete/<str:slug>/', views.DestroyCategory.as_view(), name='delete-category'),
     # Possibly fix the post views and serializers
     path('post/', views.AllPostsView.as_view(), name='all-posts'),
     path('post/read/<int:pk>/', views.SinglePostView.as_view(), name='read-post'),

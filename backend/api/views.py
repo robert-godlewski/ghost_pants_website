@@ -57,7 +57,13 @@ class CreateCategory(generics.ListCreateAPIView):
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticated] # Probably need to also check if user.is_staff == True whomewhere her or in the api.serializer class for this to work
 
-# Add in full CRUD functions for Categories here
+
+class DestroyCategory(generics.DestroyAPIView):
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated] # Probably need to also check if user.is_staff == True whomewhere her or in the api.serializer class for this to work
+
+    def get_queryset(self, slug):
+        return Category.objects.filter(slug=slug)
 
 
 class AllPostsView(generics.ListAPIView):
