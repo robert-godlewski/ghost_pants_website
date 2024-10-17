@@ -1,17 +1,25 @@
 import {useState, useEffect} from 'react';
 import api from '../api';
+
+// Components
 import Note from '../components/Note';
+import PostPreview from '../components/PostPreview';
 
 // Style sheets
-import '../styles/Home.css'
+import '../styles/Home.css';
 
 function Home() {
+    // Notes - Remove these
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
+    // Need to add in categories
+    // Posts
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         getNotes();
+        getPosts();
     }, []);
 
     const getNotes = () => {
@@ -20,6 +28,17 @@ function Home() {
             .then((res) => res.data)
             .then((data) => setNotes(data))
             .catch((err) => alert(err));
+    };
+
+    const getPosts = () => {
+        api
+            .get('/api/post/')
+            .then((res) => res.data)
+            .then((data) => setPosts(data))
+            .catch((err) => {
+                alert(err);
+                console.log(err);
+            });
     };
 
     const deleteNote = (id) => {
@@ -41,6 +60,17 @@ function Home() {
 
     return <div>
         <a href='/logout'>Logout</a>
+        {/* Add in categories that everyone can see here */}
+        <div>
+            <h2>Posts</h2>
+            {
+                posts.map((post) => {
+                    return <PostPreview post={post} auth={false} key={post.id}/>
+                })
+            }
+            {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
+        </div>
+        {/* Need to add in a link here to create a post */}
         <div>
             <h2>Notes</h2>
             {

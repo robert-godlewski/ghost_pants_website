@@ -36,7 +36,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255, blank=True)
-    slug = models.SlugField(null=False)
+    slug = models.SlugField(null=False, unique=True)
     content = models.TextField() # Might need to add in something here to make more of a word ducument like setting available
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
