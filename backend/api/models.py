@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 # This is from the tutorial - will remove
@@ -25,6 +26,11 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
 
 # Actual blog post
 class Post(models.Model):
@@ -38,13 +44,22 @@ class Post(models.Model):
     published = models.BooleanField(default=False)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True) # Might need to fix this field later
+    # Need a many to many field for tags here - refer to this for details https://docs.djangoproject.com/en/5.1/topics/db/models/#many-to-many-relationships
 
     class Meta:
         ordering = ["-publish_date"]
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            if self.subtitle:
+                self.slug = slugify(self.title+'-'+self.subtitle)
+            else:
+                self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
