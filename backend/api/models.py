@@ -1,5 +1,7 @@
+from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 # This is from the tutorial - will remove
@@ -16,7 +18,7 @@ class Note(models.Model):
 # Used to group blogs together
 class Category(models.Model):
     title = models.CharField(max_length=255, unique=True)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=True, unique=True)
 
     class Meta:
         ordering = ['title']
@@ -25,6 +27,10 @@ class Category(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 # Actual blog post
 class Post(models.Model):
