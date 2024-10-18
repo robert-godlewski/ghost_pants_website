@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
+import CreatePost from './pages/CreatePost';
 
 function Logout() {
   localStorage.clear()
@@ -30,6 +31,10 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<RegisterAndLogout/>}/>
         <Route path='/logout' element={<Logout/>}/>
+        <Route 
+          path='/post/create' 
+          element={<ProtectedRoute><CreatePost/></ProtectedRoute>}
+        />
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>

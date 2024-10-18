@@ -38,13 +38,13 @@ class NoteDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
 
 
-class AllPostsView(generics.ListAPIView):
-    queryset = Post.objects.all()
+class AllPublishedPostsView(generics.ListAPIView):
+    queryset = Post.objects.filter(published=True)
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
 
 
-class AddDraftPostsView(generics.ListAPIView):
+class DraftPostsView(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 

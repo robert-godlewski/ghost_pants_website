@@ -44,7 +44,7 @@ class Post(models.Model):
     published = models.BooleanField(default=False)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True) # Might need to fix this field later
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True) # Might need to fix this field later
     # Need a many to many field for tags here - refer to this for details https://docs.djangoproject.com/en/5.1/topics/db/models/#many-to-many-relationships
 
     class Meta:

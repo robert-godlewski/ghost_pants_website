@@ -15,10 +15,14 @@ function Home() {
     const [title, setTitle] = useState('');
     // Need to add in categories
     // Posts
+    // This is just all of the draft posts that the user can edit
+    const [draftPosts, setDraftPosts] = useState([]);
+    // This is all of the final posts
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         getNotes();
+        getDraftPosts();
         getPosts();
     }, []);
 
@@ -28,6 +32,17 @@ function Home() {
             .then((res) => res.data)
             .then((data) => setNotes(data))
             .catch((err) => alert(err));
+    };
+
+    const getDraftPosts = () => {
+        api
+            .get('/api/post/drafts/')
+            .then((res) => res.data)
+            .then((data) => setDraftPosts(data))
+            .catch((err) => {
+                alert(err);
+                console.log(err);
+            });
     };
 
     const getPosts = () => {
@@ -62,7 +77,17 @@ function Home() {
         <a href='/logout'>Logout</a>
         {/* Add in categories that everyone can see here */}
         <div>
-            <h2>Posts</h2>
+            <h2>Your Draft Posts</h2>
+            {
+                draftPosts.map((post) => {
+                    return <PostPreview post={post} auth={true} key={post.id}/>
+                })
+            }
+            {draftPosts.length === 0 ? <p>There are no draft posts available right now.</p> : null}
+            <a href='/post/create'>New Draft Post</a>
+        </div>
+        <div>
+            <h2>All Posts</h2>
             {
                 posts.map((post) => {
                     return <PostPreview post={post} auth={false} key={post.id}/>
@@ -70,7 +95,6 @@ function Home() {
             }
             {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
         </div>
-        {/* Need to add in a link here to create a post */}
         <div>
             <h2>Notes</h2>
             {
@@ -100,7 +124,7 @@ function Home() {
             />
             <input type='submit' value='Submit' />
         </form>
-    </div>;
+    </div>
 }
 
 export default Home;
