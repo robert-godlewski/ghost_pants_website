@@ -38,18 +38,27 @@ class NoteDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
 
 
-class AllPostsView(generics.ListAPIView):
-    queryset = Post.objects.all()
+class AllPublishedPostsView(generics.ListAPIView):
+    queryset = Post.objects.filter(published=True)
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
+
+
+class DraftPostsView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(author=user, published=False)
 
 
 class SinglePostView(generics.ListAPIView):
     serializer_class = PostSerializer
     permission_classes = [AllowAny]
 
-    def get_queryset(self, id):
-        return Post.objects.filter(id=id)
+    def get_queryset(self, slug):
+        return Post.objects.filter(slug=slug)
 
 
 class PostCreateView(generics.ListCreateAPIView):

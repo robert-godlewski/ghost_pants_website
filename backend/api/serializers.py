@@ -52,11 +52,18 @@ class PostSerializer(serializers.ModelSerializer):
             "publish_date",
             "published",
             "author",
-            "category"
+            # "category"
         ]
-        extra_kwargs = {"author": {"read_only": True}, "category": {"read_only": True}}
+        extra_kwargs = {
+            "author": {"read_only": True}, 
+            # "category": {"read_only": True},
+            "slug": {"read_only": True},
+            "created_at": {"read_only": True},
+            "updated_at": {"read_only": True},
+        }
 
     # Posts have full CRUD only with admin users and Read by everyone
+    # def create(self, validated_data): return super().create(validated_data)
 
 
 class CommentSerializer(serializers.ModelSerializer):

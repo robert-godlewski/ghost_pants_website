@@ -1,17 +1,29 @@
 import {useState, useEffect} from 'react';
 import api from '../api';
+
+// Components
 import Note from '../components/Note';
+import PostPreview from '../components/PostPreview';
 
 // Style sheets
-import '../styles/Home.css'
+import '../styles/Home.css';
 
 function Home() {
+    // Notes - Remove these
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState('');
     const [title, setTitle] = useState('');
+    // Need to add in categories
+    // Posts
+    // This is just all of the draft posts that the user can edit
+    const [draftPosts, setDraftPosts] = useState([]);
+    // This is all of the final posts
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         getNotes();
+        getDraftPosts();
+        getPosts();
     }, []);
 
     const getNotes = () => {
@@ -20,6 +32,28 @@ function Home() {
             .then((res) => res.data)
             .then((data) => setNotes(data))
             .catch((err) => alert(err));
+    };
+
+    const getDraftPosts = () => {
+        api
+            .get('/api/post/drafts/')
+            .then((res) => res.data)
+            .then((data) => setDraftPosts(data))
+            .catch((err) => {
+                alert(err);
+                console.log(err);
+            });
+    };
+
+    const getPosts = () => {
+        api
+            .get('/api/post/')
+            .then((res) => res.data)
+            .then((data) => setPosts(data))
+            .catch((err) => {
+                alert(err);
+                console.log(err);
+            });
     };
 
     const deleteNote = (id) => {
@@ -41,6 +75,26 @@ function Home() {
 
     return <div>
         <a href='/logout'>Logout</a>
+        {/* Add in categories that everyone can see here */}
+        <div>
+            <h2>Your Draft Posts</h2>
+            {
+                draftPosts.map((post) => {
+                    return <PostPreview post={post} auth={true} key={post.id}/>
+                })
+            }
+            {draftPosts.length === 0 ? <p>There are no draft posts available right now.</p> : null}
+            <a href='/post/create'>New Draft Post</a>
+        </div>
+        <div>
+            <h2>All Posts</h2>
+            {
+                posts.map((post) => {
+                    return <PostPreview post={post} auth={false} key={post.id}/>
+                })
+            }
+            {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
+        </div>
         <div>
             <h2>Notes</h2>
             {
@@ -70,7 +124,7 @@ function Home() {
             />
             <input type='submit' value='Submit' />
         </form>
-    </div>;
+    </div>
 }
 
 export default Home;
