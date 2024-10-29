@@ -5,10 +5,15 @@ urlpatterns = [
     # Going to remove the notes later on
     path('notes/', views.NoteCreateView.as_view(), name='create-note'),
     path('notes/delete/<int:pk>/', views.NoteDelete.as_view(), name='delete-note'),
-    path('post/', views.AllPublishedPostsView.as_view(), name='all-posts'),
-    path('post/drafts/', views.DraftPostsView.as_view(), name='draft-posts'),
-    path('post/read/<str:slug>/', views.SinglePostView.as_view(), name='read-post'),
+    # Split this into 2 with drafts and published
+    path('post/', views.AllPostsView.as_view(), name='all-posts'),
     path('post/create/', views.PostCreateView.as_view(), name='create-post'),
+    # path('post/', views.AllPublishedPostsView.as_view(), name='all-posts'),
+    # path('post/drafts/', views.AllDraftPostsView.as_view(), name='all-draft-posts'),
+    # Split this into 2 with drafts and published
+    path('post/read/<str:slug>/', views.SinglePostView.as_view(), name='single-post'),
+    # path('post/read/draft/<str:slug>/', views.SingleDraftPostView.as_view(), name='draft-post'),
+    # path('post/read/<str:slug>/', views.SinglePublishedPostView.as_view(), name='read-post'),
     path('post/update/<str:slug>/', views.PostUpdateView.as_view(), name='update-post'),
     path('post/delete/<str:slug>/', views.PostDelete.as_view(), name='delete-post')
 ]

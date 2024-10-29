@@ -1,10 +1,13 @@
 import {useState, useEffect} from 'react';
+import {Link, /*useParams*/} from 'react-router-dom';
 import api from '../api';
 
 // Components
-import PostPreview from '../components/PostPreview';
+// import PostPreview from '../components/PostPreview'; - REMOVE THIS
 
 function Landing() {
+    // eslint-disable-next-line react/prop-types
+    // const {slug, setSlug} = useParams();
     // Will also need to work with categories here as well to sort through specific posts
     const [posts, setPosts] = useState([]);
 
@@ -35,7 +38,11 @@ function Landing() {
             <h2>Posts</h2>
             {
                 posts.map((post) => {
-                    return <PostPreview post={post} auth={false} key={post.id}/>
+                    return <div key={post.id}>
+                        <h4>{post.title}</h4>
+                        <p>{post.subtitle}</p>
+                        <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                    </div>
                 })
             }
         </div>

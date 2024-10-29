@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import api from '../api';
 
 // Components
 import Note from '../components/Note';
-import PostPreview from '../components/PostPreview';
+// import PostPreview from '../components/PostPreview'; - Fix or remove this
 
 // Style sheets
 import '../styles/Home.css';
@@ -16,14 +18,16 @@ function Home() {
     // Need to add in categories
     // Posts
     // This is just all of the draft posts that the user can edit
-    const [draftPosts, setDraftPosts] = useState([]);
-    // This is all of the final posts
+    // eslint-disable-next-line react/prop-types
+    // const {draftPosts, setDraftPosts} = props;
+    // This is all of the published posts
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         getNotes();
-        getDraftPosts();
+        // getDraftPosts();
         getPosts();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getNotes = () => {
@@ -34,17 +38,15 @@ function Home() {
             .catch((err) => alert(err));
     };
 
-    const getDraftPosts = () => {
-        api
-            .get('/api/post/drafts/')
-            .then((res) => res.data)
-            .then((data) => setDraftPosts(data))
-            .catch((err) => {
-                alert(err);
-                console.log(err);
-            });
-    };
+    // const getDraftPosts = () => {
+    //     api.get('/api/posts/drafts/').then((res) => {
+    //         console.log(res);
+    //         console.log(res.data);
+    //         setDraftPosts(res.data);
+    //     }).catch((err) => console.log(err));
+    // };
 
+    // fix this so that it only gets published posts only
     const getPosts = () => {
         api
             .get('/api/post/')
@@ -78,23 +80,29 @@ function Home() {
         {/* Add in categories that everyone can see here */}
         <div>
             <h2>Your Draft Posts</h2>
-            {
+            {/*
                 draftPosts.map((post) => {
-                    return <PostPreview post={post} auth={true} key={post.id}/>
+                    return <PostPreview post={post} auth={true} method={'draft'} key={post.id}/>
                 })
-            }
-            {draftPosts.length === 0 ? <p>There are no draft posts available right now.</p> : null}
+            */}
+            {/* draftPosts.length === 0 ? <p>There are no draft posts available right now. ***Need to fix this***</p> : null */}
+            <p>***FIX THIS SECTION***</p>
             <a href='/post/create'>New Draft Post</a>
         </div>
         <div>
-            <h2>All Posts</h2>
+            <h2>Posts</h2>
             {
                 posts.map((post) => {
-                    return <PostPreview post={post} auth={false} key={post.id}/>
+                    return <div key={post.id}>
+                        <h4>{post.title}</h4>
+                        <p>{post.subtitle}</p>
+                        <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                    </div>
                 })
             }
             {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
         </div>
+        {/* Remove below */}
         <div>
             <h2>Notes</h2>
             {

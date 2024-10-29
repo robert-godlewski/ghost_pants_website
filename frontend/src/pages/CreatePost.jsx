@@ -19,11 +19,11 @@ function CreatePost() {
             } else {
                 msg = 'Failed to create';
             }
-            alert(`${msg} post!`)
+            // alert(`${msg} post!`)
             console.log(`${msg} post = {${title}, ${subtitle}, ...`)
             navigate('/');
         }).catch((err) => {
-            alert(err);
+            // alert(err);
             console.log(err);
             console.log(err.response.data);
         });

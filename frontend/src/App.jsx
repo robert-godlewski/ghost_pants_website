@@ -1,4 +1,4 @@
-// import react from 'react'
+import {useState} from 'react'
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 // Components
@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
 import CreatePost from './pages/CreatePost';
+import OnePost from './pages/OnePost';
 
 function Logout() {
   localStorage.clear()
@@ -23,11 +24,28 @@ function RegisterAndLogout() {
 }
 
 function App() {
+  // List of all of the draft posts for a specific user - Fix this
+  const [draftPosts, setDraftPosts] = useState([]);
+  // List of all published posts for any user - Fix this
+  const [publishedPosts, setPublishedPosts] = useState([]);
+  // To keep track of the slug
+  const [slug, setSlug] = useState('');
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
-        <Route path='/landing' element={<Landing/>}/>
+        <Route 
+          path='/' 
+          element={<ProtectedRoute><Home 
+            slug={slug} setSlug={setSlug} 
+            draftPosts={draftPosts} setDraftPosts={setDraftPosts} 
+            publishedPosts={publishedPosts} setPublishedPosts={setPublishedPosts}
+          /></ProtectedRoute>}
+        />
+        <Route path='/landing' element={<Landing
+          slug={slug} setSlug={setSlug}
+          // publishedPosts={publishedPosts} setPublishedPosts={setPublishedPosts}
+        />}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<RegisterAndLogout/>}/>
         <Route path='/logout' element={<Logout/>}/>
@@ -35,6 +53,7 @@ function App() {
           path='/post/create' 
           element={<ProtectedRoute><CreatePost/></ProtectedRoute>}
         />
+        <Route path='/post/read/:slug' element={<OnePost />}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
