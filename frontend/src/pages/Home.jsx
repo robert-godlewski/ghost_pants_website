@@ -5,7 +5,6 @@ import api from '../api';
 
 // Components
 import Note from '../components/Note';
-// import PostPreview from '../components/PostPreview'; - Fix or remove this
 
 // Style sheets
 import '../styles/Home.css';

@@ -1,13 +1,9 @@
 import {useState, useEffect} from 'react';
-import {Link, /*useParams*/} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import api from '../api';
-
-// Components
-// import PostPreview from '../components/PostPreview'; - REMOVE THIS
 
 function Landing() {
     // eslint-disable-next-line react/prop-types
-    // const {slug, setSlug} = useParams();
     // Will also need to work with categories here as well to sort through specific posts
     const [posts, setPosts] = useState([]);
 

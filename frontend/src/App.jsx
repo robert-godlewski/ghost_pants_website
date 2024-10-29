@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 // Components
@@ -24,28 +23,11 @@ function RegisterAndLogout() {
 }
 
 function App() {
-  // List of all of the draft posts for a specific user - Fix this
-  const [draftPosts, setDraftPosts] = useState([]);
-  // List of all published posts for any user - Fix this
-  const [publishedPosts, setPublishedPosts] = useState([]);
-  // To keep track of the slug
-  const [slug, setSlug] = useState('');
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route 
-          path='/' 
-          element={<ProtectedRoute><Home 
-            slug={slug} setSlug={setSlug} 
-            draftPosts={draftPosts} setDraftPosts={setDraftPosts} 
-            publishedPosts={publishedPosts} setPublishedPosts={setPublishedPosts}
-          /></ProtectedRoute>}
-        />
-        <Route path='/landing' element={<Landing
-          slug={slug} setSlug={setSlug}
-          // publishedPosts={publishedPosts} setPublishedPosts={setPublishedPosts}
-        />}/>
+        <Route path='/' element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path='/landing' element={<Landing/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<RegisterAndLogout/>}/>
         <Route path='/logout' element={<Logout/>}/>
