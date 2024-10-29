@@ -38,20 +38,6 @@ class NoteDelete(generics.DestroyAPIView):
         return Note.objects.filter(author=user)
 
 
-class AllPostsView(generics.ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [AllowAny]
-
-
-class SinglePostView(generics.ListAPIView):
-    serializer_class = PostSerializer
-    permission_classes = [AllowAny]
-
-    def get_queryset(self, id):
-        return Post.objects.filter(id=id)
-
-
 class PostCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
@@ -66,6 +52,56 @@ class PostCreateView(generics.ListCreateAPIView):
             serializer.save(author=self.request.user)
         else:
             print(serializer.errors)
+
+
+# Fix below - Will need to split this up for later
+# Basic view for posts
+class AllPostsView(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = [AllowAny]
+
+
+# class AllPublishedPostsView(AllPostsView):
+#     queryset = Post.objects.filter(published=True)
+#     permission_classes = [AllowAny]
+
+
+# class AllDraftPostsView(AllPostsView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get_queryset(self):
+#         user = self.request.user
+#         return Post.objects.filter(author=user, published=False)
+
+
+# Fix below - Will need to split this up for later
+# Basic view for a single post
+class SinglePostView(generics.ListAPIView):
+    serializer_class = PostSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        slug = self.kwargs.get('slug')
+        # print(f'Slug = {slug}')
+        return Post.objects.filter(slug=slug)
+
+
+# class SingleDraftPostView(generics.ListAPIView):
+#     serializer_class = PostSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def get_queryset(self, slug):
+#         user = self.request.user
+#         return Post.objects.filter(author=user, slug=slug, published=False)
+
+
+# class SinglePublishedPostView(generics.ListAPIView):
+#     serializer_class = PostSerializer
+#     permission_classes = [AllowAny]
+
+#     def get_queryset(self, slug):
+#         return Post.objects.filter(slug=slug, published=True)
 
 
 class PostUpdateView(generics.UpdateAPIView):

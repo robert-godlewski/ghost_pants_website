@@ -36,7 +36,7 @@ class Category(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255, unique=True)
     subtitle = models.CharField(max_length=255, blank=True)
-    slug = models.SlugField(null=False)
+    slug = models.SlugField(null=False, unique=True)
     content = models.TextField() # Might need to add in something here to make more of a word ducument like setting available
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -44,7 +44,7 @@ class Post(models.Model):
     published = models.BooleanField(default=False)
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True) # Might need to fix this field later
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, null=True) # Might need to fix this field later
     # Need a many to many field for tags here - refer to this for details https://docs.djangoproject.com/en/5.1/topics/db/models/#many-to-many-relationships
 
     class Meta:
