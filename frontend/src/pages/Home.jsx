@@ -95,7 +95,11 @@ function Home() {
                     return <div key={post.id}>
                         <h4>{post.title}</h4>
                         <p>{post.subtitle}</p>
-                        <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                        <div>
+                            <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                            <span> | </span>
+                            <Link to={`/post/edit/${post.slug}/`}>Edit</Link>
+                        </div>
                     </div>
                 })
             }
