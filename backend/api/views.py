@@ -109,12 +109,14 @@ class PostUpdateView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     def get_queryset(self):
+        slug = self.kwargs.get('slug')
         user = self.request.user
-        return Post.objects.filter(author=user)
+        return Post.objects.filter(author=user, slug=slug)
 
     def perform_update(self, serializer): # Probably need to fix this
+        slug = self.kwargs.get('slug')
         if serializer.is_valid():
-            serializer.update(author=self.request.user)
+            serializer.update(author=self.request.user, slug=slug)
         else:
             print(serializer.errors)
 

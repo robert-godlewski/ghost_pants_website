@@ -54,3 +54,4 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 * [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 * [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI)
 * [Tim's Tutorial Repository](https://github.com/techwithtim/Django-React-Full-Stack-App/tree/main)
+* [Using datetime fields](https://www.w3schools.com/tags/att_input_type_datetime-local.asp)
