@@ -54,7 +54,7 @@ function Home() {
             .then((res) => res.data)
             .then((data) => setPosts(data))
             .catch((err) => {
-                alert(err);
+                // alert(err);
                 console.log(err);
             });
     };

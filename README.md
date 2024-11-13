@@ -46,12 +46,19 @@ Need to choose between:
 
 Most likely going to choose Heroku due to being cheap and this is mainly for myself.
 
+# References from Django Docs
+* https://docs.djangoproject.com/en/5.0/topics/serialization/
+* https://www.django-rest-framework.org/
+* https://www.django-rest-framework.org/api-guide/serializers/
+* https://www.django-rest-framework.org/api-guide/generic-views/
+
 # References
 * https://www.toptal.com/developers/gitignore/api/django,react
-* https://www.django-rest-framework.org/
-* https://docs.djangoproject.com/en/5.0/topics/serialization/
 * [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 * [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 * [Tim's Tutorial](https://www.youtube.com/watch?v=c-QsfbznSXI)
 * [Tim's Tutorial Repository](https://github.com/techwithtim/Django-React-Full-Stack-App/tree/main)
 * [Using datetime fields](https://www.w3schools.com/tags/att_input_type_datetime-local.asp)
+* https://www.30secondsofcode.org/js/s/string-to-slug/
+* https://www.agiliq.com/blog/2014/12/building-a-restful-api-with-django-rest-framework/
+* https://es.stackoverflow.com/questions/56670/como-generar-un-response-de-un-post-con-django-rest-framework-bulk
