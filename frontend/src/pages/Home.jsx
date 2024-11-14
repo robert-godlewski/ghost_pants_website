@@ -3,17 +3,17 @@ import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import api from '../api';
 
-// Components
-import Note from '../components/Note';
+// Components - Might remove
+// import Note from '../components/Note';
 
 // Style sheets
 import '../styles/Home.css';
 
 function Home() {
     // Notes - Remove these
-    const [notes, setNotes] = useState([]);
-    const [content, setContent] = useState('');
-    const [title, setTitle] = useState('');
+    // const [notes, setNotes] = useState([]);
+    // const [content, setContent] = useState('');
+    // const [title, setTitle] = useState('');
     // Need to add in categories
     // Posts
     // This is just all of the draft posts that the user can edit
@@ -23,20 +23,22 @@ function Home() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        getNotes();
+        // getNotes();
         // getDraftPosts();
         getPosts();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getNotes = () => {
-        api
-            .get('/api/notes/')
-            .then((res) => res.data)
-            .then((data) => setNotes(data))
-            .catch((err) => alert(err));
-    };
+    // Keep until we remove Notes from the api
+    // const getNotes = () => {
+    //     api
+    //         .get('/api/notes/')
+    //         .then((res) => res.data)
+    //         .then((data) => setNotes(data))
+    //         .catch((err) => alert(err));
+    // };
 
+    // Might need this later on
     // const getDraftPosts = () => {
     //     api.get('/api/posts/drafts/').then((res) => {
     //         console.log(res);
@@ -52,27 +54,29 @@ function Home() {
             .then((res) => res.data)
             .then((data) => setPosts(data))
             .catch((err) => {
-                alert(err);
+                // alert(err);
                 console.log(err);
             });
     };
 
-    const deleteNote = (id) => {
-        api.delete(`/api/notes/delete/${id}/`).then((res) => {
-            if (res.status === 204) alert('Note deleted!');
-            else alert('Failed to delete note.');
-            getNotes();
-        }).catch((error) => alert(error));
-    };
+    // Use this as a reference
+    // const deleteNote = (id) => {
+    //     api.delete(`/api/notes/delete/${id}/`).then((res) => {
+    //         if (res.status === 204) alert('Note deleted!');
+    //         else alert('Failed to delete note.');
+    //         getNotes();
+    //     }).catch((error) => alert(error));
+    // };
 
-    const createNote = (e) => {
-        e.preventDefault();
-        api.post('/api/notes/', {content, title}).then((res) => {
-            if (res.status === 201) alert('Note created!');
-            else alert('Failed to make note.');
-            getNotes();
-        }).catch((err) => alert(err));
-    };
+    // Remove this when done with notes
+    // const createNote = (e) => {
+    //     e.preventDefault();
+    //     api.post('/api/notes/', {content, title}).then((res) => {
+    //         if (res.status === 201) alert('Note created!');
+    //         else alert('Failed to make note.');
+    //         getNotes();
+    //     }).catch((err) => alert(err));
+    // };
 
     return <div>
         <a href='/logout'>Logout</a>
@@ -95,14 +99,18 @@ function Home() {
                     return <div key={post.id}>
                         <h4>{post.title}</h4>
                         <p>{post.subtitle}</p>
-                        <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                        <div>
+                            <Link to={`/post/read/${post.slug}/`}>Read</Link>
+                            <span> | </span>
+                            <Link to={`/post/edit/${post.slug}/`}>Edit</Link>
+                        </div>
                     </div>
                 })
             }
             {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
         </div>
-        {/* Remove below */}
-        <div>
+        {/* Remove below when finished with notes */}
+        {/* <div>
             <h2>Notes</h2>
             {
                 notes.map((note) => {
@@ -130,7 +138,7 @@ function Home() {
                 value={content}
             />
             <input type='submit' value='Submit' />
-        </form>
+        </form> */}
     </div>
 }
 

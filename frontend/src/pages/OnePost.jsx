@@ -16,7 +16,7 @@ function OnePost() {
     useEffect(() => {
         api.get(`/api/post/read/${slug}/`).then((res) => {
             console.log(res.data);
-            setPost(res.data[0])
+            setPost(res.data[0]);
         }).catch((err) => {
             // alert(err);
             console.log(`Slug is not working.  Slug = ${slug}`)

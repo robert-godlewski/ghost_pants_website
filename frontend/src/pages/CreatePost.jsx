@@ -19,11 +19,9 @@ function CreatePost() {
             } else {
                 msg = 'Failed to create';
             }
-            // alert(`${msg} post!`)
-            console.log(`${msg} post = {${title}, ${subtitle}, ...`)
+            console.log(`${msg} post = {${title}, ${subtitle}, ...`);
             navigate('/');
         }).catch((err) => {
-            // alert(err);
             console.log(err);
             console.log(err.response.data);
         });
@@ -51,6 +49,7 @@ function CreatePost() {
         </div>
         <div>
             {/* Maybe add in a domument editor here */}
+            <label>Content here:</label>
             <textarea 
                 value={content}
                 onChange={(e) => setContent(e.target.value)}

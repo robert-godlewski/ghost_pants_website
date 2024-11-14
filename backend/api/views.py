@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
 from .serializers import UserSerializer, NoteSerializer, PostSerializer
 from .models import Note, Post
 
@@ -109,14 +110,29 @@ class PostUpdateView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     def get_queryset(self):
+        # print('Getting queryset in Django')
         user = self.request.user
-        return Post.objects.filter(author=user)
+        # print(user.username)
+        slug = self.kwargs.get('slug')
+        # print(slug)
+        return Post.objects.get(author=user, slug=slug)
+        # post = Post.objects.get(author=user, slug=slug)
+        # print(f'ID of post = {post.id}')
+        # return post
 
-    def perform_update(self, serializer): # Probably need to fix this
+    # Need to fix something in here to properly update certain fields
+    # * slug
+    # * published and publish_date
+    def update(self, request, *args, **kwargs):
+        post = self.get_queryset()
+        # print(request.data)
+        serializer = self.get_serializer(instance=post, data=request.data, partial=True)
         if serializer.is_valid():
-            serializer.update(author=self.request.user)
+            serializer.save()
+            return Response(serializer.data)
         else:
             print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 

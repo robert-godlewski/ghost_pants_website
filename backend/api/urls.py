@@ -14,6 +14,8 @@ urlpatterns = [
     path('post/read/<str:slug>/', views.SinglePostView.as_view(), name='single-post'),
     # path('post/read/draft/<str:slug>/', views.SingleDraftPostView.as_view(), name='draft-post'),
     # path('post/read/<str:slug>/', views.SinglePublishedPostView.as_view(), name='read-post'),
+    # For updating slugs we might need to id of the post not the slug
     path('post/update/<str:slug>/', views.PostUpdateView.as_view(), name='update-post'),
+    # path('post/update/<int:pk>/', views.PostUpdateView.as_view(), name='update-post'),
     path('post/delete/<str:slug>/', views.PostDelete.as_view(), name='delete-post')
 ]

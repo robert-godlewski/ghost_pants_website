@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
 import CreatePost from './pages/CreatePost';
 import OnePost from './pages/OnePost';
+import UpdatePost from './pages/UpdatePost';
 
 function Logout() {
   localStorage.clear()
@@ -36,6 +37,9 @@ function App() {
           element={<ProtectedRoute><CreatePost/></ProtectedRoute>}
         />
         <Route path='/post/read/:slug' element={<OnePost />}/>
+        <Route 
+          path='/post/edit/:slug' 
+          element={<ProtectedRoute><UpdatePost/></ProtectedRoute>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </BrowserRouter>
