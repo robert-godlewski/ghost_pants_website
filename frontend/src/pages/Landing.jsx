@@ -14,12 +14,8 @@ function Landing() {
     const getPosts = () => {
         api
             .get('/api/post/')
-            .then((res) => res.data)
-            .then((data) => setPosts(data))
-            .catch((err) => {
-                // alert(err);
-                console.log(err);
-            });
+            .then((res) => setPosts(res.data))
+            .catch((err) => console.log(err));
     };
 
     return <div>

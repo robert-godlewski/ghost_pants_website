@@ -3,17 +3,6 @@ from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 
-# This is from the tutorial - will remove
-class Note(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
-
-    def __str__(self) -> str:
-        return self.title
-
-
 # Used to group blogs together
 class Category(models.Model):
     title = models.CharField(max_length=255, unique=True)
