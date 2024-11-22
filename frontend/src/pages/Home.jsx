@@ -49,14 +49,23 @@ function Home() {
 
     // fix this so that it only gets published posts only
     const getPosts = () => {
-        api
-            .get('/api/post/')
-            .then((res) => res.data)
-            .then((data) => setPosts(data))
-            .catch((err) => {
-                // alert(err);
-                console.log(err);
-            });
+        api.get('/api/post/')
+            .then((res) => setPosts(res.data))
+            .catch((err) => console.log(err));
+    };
+
+    const deletePost = (slug) => {
+        api.delete(`/api/post/delete/${slug}/`).then((res) => {
+            if (res.status === 204) {
+                // alert('Post deleted!');
+                console.log(`Deleted post with 204`);
+            }
+            console.log(`Deleted post with slug = ${slug}`);
+            getPosts();
+        }).catch((err) => {
+            // alert(err);
+            console.log(err);
+        });
     };
 
     // Use this as a reference
@@ -103,6 +112,7 @@ function Home() {
                             <Link to={`/post/read/${post.slug}/`}>Read</Link>
                             <span> | </span>
                             <Link to={`/post/edit/${post.slug}/`}>Edit</Link>
+                            <button onClick={() => deletePost(post.slug)}>Delete</button>
                         </div>
                     </div>
                 })

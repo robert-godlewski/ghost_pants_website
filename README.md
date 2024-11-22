@@ -62,3 +62,4 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 * https://www.30secondsofcode.org/js/s/string-to-slug/
 * https://www.agiliq.com/blog/2014/12/building-a-restful-api-with-django-rest-framework/
 * https://es.stackoverflow.com/questions/56670/como-generar-un-response-de-un-post-con-django-rest-framework-bulk
+* [Django World Serializer Examples on YouTube](https://www.youtube.com/watch?v=k5Mb7x7ilrQ)

@@ -136,13 +136,22 @@ class PostUpdateView(generics.UpdateAPIView):
 
 
 
-class PostDelete(generics.DestroyAPIView):
+class PostDeleteView(generics.DestroyAPIView):
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated] # Might need add in if user.is_staff == True somewhere in here or in the api.serializer.UserSerializer class for this to work
 
     def get_queryset(self):
         user = self.request.user
-        return Note.objects.filter(author=user)
+        slug = self.kwargs.get('slug')
+        return Post.objects.get(author=user, slug=slug)
+
+    # Need to also add in a cascading effect for comments perhaps
+    def destroy(self, request, *args, **kwargs):
+        post = self.get_queryset()
+        print(post.slug)
+        print(post.id)
+        post.delete()
+        return Response()
 
 
 # Add in full CRUD functions for Categories here
