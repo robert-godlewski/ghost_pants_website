@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note, Category, Post, Comment
+from .models import Category, Post, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -20,14 +20,6 @@ class UserSerializer(serializers.ModelSerializer):
         # Might need to add in the default that user.is_staff = False
         user = User.objects.create_user(**validated_data)
         return user
-
-
-# This is from the tutorial - will remove
-class NoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Note
-        fields = ["id", "title", "content", "created_at", "author"]
-        extra_kwargs = {"author": {"read_only": True}}
 
 
 class CategorySerializer(serializers.ModelSerializer):

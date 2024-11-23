@@ -3,17 +3,10 @@ import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import api from '../api';
 
-// Components - Might remove
-// import Note from '../components/Note';
-
 // Style sheets
 import '../styles/Home.css';
 
 function Home() {
-    // Notes - Remove these
-    // const [notes, setNotes] = useState([]);
-    // const [content, setContent] = useState('');
-    // const [title, setTitle] = useState('');
     // Need to add in categories
     // Posts
     // This is just all of the draft posts that the user can edit
@@ -23,20 +16,9 @@ function Home() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        // getNotes();
         // getDraftPosts();
         getPosts();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // Keep until we remove Notes from the api
-    // const getNotes = () => {
-    //     api
-    //         .get('/api/notes/')
-    //         .then((res) => res.data)
-    //         .then((data) => setNotes(data))
-    //         .catch((err) => alert(err));
-    // };
 
     // Might need this later on
     // const getDraftPosts = () => {
@@ -49,7 +31,8 @@ function Home() {
 
     // fix this so that it only gets published posts only
     const getPosts = () => {
-        api.get('/api/post/')
+        api
+            .get('/api/post/')
             .then((res) => setPosts(res.data))
             .catch((err) => console.log(err));
     };
@@ -67,25 +50,6 @@ function Home() {
             console.log(err);
         });
     };
-
-    // Use this as a reference
-    // const deleteNote = (id) => {
-    //     api.delete(`/api/notes/delete/${id}/`).then((res) => {
-    //         if (res.status === 204) alert('Note deleted!');
-    //         else alert('Failed to delete note.');
-    //         getNotes();
-    //     }).catch((error) => alert(error));
-    // };
-
-    // Remove this when done with notes
-    // const createNote = (e) => {
-    //     e.preventDefault();
-    //     api.post('/api/notes/', {content, title}).then((res) => {
-    //         if (res.status === 201) alert('Note created!');
-    //         else alert('Failed to make note.');
-    //         getNotes();
-    //     }).catch((err) => alert(err));
-    // };
 
     return <div>
         <a href='/logout'>Logout</a>
@@ -119,36 +83,6 @@ function Home() {
             }
             {posts.length === 0 ? <p>There are no posts available right now.</p> : null}
         </div>
-        {/* Remove below when finished with notes */}
-        {/* <div>
-            <h2>Notes</h2>
-            {
-                notes.map((note) => {
-                    return <Note note={note} onDelete={deleteNote} key={note.id}/>
-                })
-            }
-        </div>
-        <h2>Create a Note</h2>
-        <form onSubmit={createNote}>
-            <label htmlFor='title'>Title:</label>
-            <input
-                type='text'
-                id='title'
-                name='title'
-                required
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
-            />
-            <label htmlFor='content'>Content:</label>
-            <textarea
-                id='content'
-                name='content'
-                required
-                onChange={(e) => setContent(e.target.value)}
-                value={content}
-            />
-            <input type='submit' value='Submit' />
-        </form> */}
     </div>
 }
 
