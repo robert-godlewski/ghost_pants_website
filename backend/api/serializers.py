@@ -49,7 +49,6 @@ class PostSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "author": {"read_only": True}, 
             # "category": {"read_only": True},
-            "slug": {"read_only": True},
             "created_at": {"read_only": True},
             "updated_at": {"read_only": True},
         }
