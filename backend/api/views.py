@@ -24,7 +24,7 @@ class PostCreateView(generics.ListCreateAPIView):
         return Post.objects.filter(author=user)
 
     def create(self, request, *args, **kwargs):
-        print(f"request.data = {request.data}")
+        # print(f"request.data = {request.data}")
         slug = slugify(request.data["title"])
         if request.data["subtitle"] != "":
             slug += "-" + slugify(request.data["subtitle"])
@@ -106,13 +106,13 @@ class PostUpdateView(generics.UpdateAPIView):
     # Need to fix something in here to properly update certain fields - published and publish_date
     def update(self, request, *args, **kwargs):
         post = self.get_queryset()
-        print(f"request.data = {request.data}")
+        # print(f"request.data = {request.data}")
         slug = self.kwargs.get('slug')
-        print(f"current post slug = {slug}")
+        # print(f"current post slug = {slug}")
         new_slug = slugify(request.data["title"])
         if request.data["subtitle"] != "":
             new_slug += "-" + slugify(request.data["subtitle"])
-        print(f"updated post slug = {new_slug}")
+        # print(f"updated post slug = {new_slug}")
         if slug == new_slug:
             request.data["slug"] = slug
         else:
