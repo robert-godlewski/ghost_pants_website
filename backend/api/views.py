@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -22,11 +23,19 @@ class PostCreateView(generics.ListCreateAPIView):
         user = self.request.user
         return Post.objects.filter(author=user)
 
-    def perform_create(self, serializer):
+    def create(self, request, *args, **kwargs):
+        print(f"request.data = {request.data}")
+        slug = slugify(request.data["title"])
+        if request.data["subtitle"] != "":
+            slug += "-" + slugify(request.data["subtitle"])
+        request.data["slug"] = slug
+        serializer = self.get_serializer(data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save(author=self.request.user)
+            return Response(serializer.data)
         else:
             print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Fix below - Will need to split this up for later
@@ -94,12 +103,20 @@ class PostUpdateView(generics.UpdateAPIView):
         # print(f'ID of post = {post.id}')
         # return post
 
-    # Need to fix something in here to properly update certain fields
-    # * slug
-    # * published and publish_date
+    # Need to fix something in here to properly update certain fields - published and publish_date
     def update(self, request, *args, **kwargs):
         post = self.get_queryset()
-        # print(request.data)
+        print(f"request.data = {request.data}")
+        slug = self.kwargs.get('slug')
+        print(f"current post slug = {slug}")
+        new_slug = slugify(request.data["title"])
+        if request.data["subtitle"] != "":
+            new_slug += "-" + slugify(request.data["subtitle"])
+        print(f"updated post slug = {new_slug}")
+        if slug == new_slug:
+            request.data["slug"] = slug
+        else:
+            request.data["slug"] = new_slug
         serializer = self.get_serializer(instance=post, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()

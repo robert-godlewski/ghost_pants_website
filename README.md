@@ -48,6 +48,7 @@ Most likely going to choose Heroku due to being cheap and this is mainly for mys
 
 # References from Django Docs
 * https://docs.djangoproject.com/en/5.0/topics/serialization/
+* https://docs.djangoproject.com/en/5.1/ref/utils/
 * https://www.django-rest-framework.org/
 * https://www.django-rest-framework.org/api-guide/serializers/
 * https://www.django-rest-framework.org/api-guide/generic-views/
